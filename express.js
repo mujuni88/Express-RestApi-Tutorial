@@ -15,12 +15,12 @@ app.param('collectionName', function(req, res, next, collectionName){
 	return next()
 })
 
-app.get('/', function(req, res){
+app.get('/', function(req, res, next){
 	res.send('please select a collection, e.g., /collections/messages');
 })
 
 // retrieve a list of items sorted by _id and with a limit of 10
-app.get('/collections/:collectionName', function(req, res){
+app.get('/collections/:collectionName', function(req, res, next){
 	req.collection.find({}, {
 		limit:10,
 		sort:[
@@ -34,7 +34,7 @@ app.get('/collections/:collectionName', function(req, res){
 })
 
 // insert collections
-app.post('/collections/:collectionName', function(req, res){
+app.post('/collections/:collectionName', function(req, res, next){
 	req.collection.insert(req.body, {}, function(err, results){
 		if (err) return next(err)
 		res.send(results)
@@ -42,7 +42,7 @@ app.post('/collections/:collectionName', function(req, res){
 })
 
 // single object retrieval 
-app.get('/collections/:collectionName/:id', function(req, res){
+app.get('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.findOne({_id:req.collection.id(req.params.id)}, function(err, result){
 		if (err) return next(err)
 		res.send(result)
@@ -50,7 +50,7 @@ app.get('/collections/:collectionName/:id', function(req, res){
 })
 
 // update returns the number of affected objects
-app.put('/collections/:collectionName/:id', function(req, res){
+app.put('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.update({_id: req.collection.id(req.params.id)}, {$set:req.body}, {safe:true, multi:false}, function(err, result){
 		if(err) return next(err)
 
@@ -59,7 +59,7 @@ app.put('/collections/:collectionName/:id', function(req, res){
 })
 
 // delete a record
-app.del('/collections/:collectionName/:id', function(req, res){
+app.del('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.remove({_id:req.collection.id(req.params.id)}, function(err, result){
 		if(err) return next(err)
 
