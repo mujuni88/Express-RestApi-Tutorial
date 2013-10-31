@@ -27,7 +27,8 @@ app.get('/collections/:collectionName', function(req, res, next){
 			['_id', -1]
 		]
 	}).toArray(function(err, results){
-		if (err) return next(err)
+		if (err) 
+			return next(err)
 
 		res.send(results)
 	})
@@ -36,7 +37,9 @@ app.get('/collections/:collectionName', function(req, res, next){
 // insert collections
 app.post('/collections/:collectionName', function(req, res, next){
 	req.collection.insert(req.body, {}, function(err, results){
-		if (err) return next(err)
+		if (err) 
+			return next(err)
+
 		res.send(results)
 	})
 })
@@ -44,7 +47,9 @@ app.post('/collections/:collectionName', function(req, res, next){
 // single object retrieval 
 app.get('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.findOne({_id:req.collection.id(req.params.id)}, function(err, result){
-		if (err) return next(err)
+		if (err) 
+			return next(err)
+
 		res.send(result)
 	})
 })
@@ -52,7 +57,8 @@ app.get('/collections/:collectionName/:id', function(req, res, next){
 // update returns the number of affected objects
 app.put('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.update({_id: req.collection.id(req.params.id)}, {$set:req.body}, {safe:true, multi:false}, function(err, result){
-		if(err) return next(err)
+		if(err) 
+			return next(err)
 
 		res.send((result == 1)?{msg:"success"}:{msg:"error"})
 	})
@@ -61,7 +67,8 @@ app.put('/collections/:collectionName/:id', function(req, res, next){
 // delete a record
 app.del('/collections/:collectionName/:id', function(req, res, next){
 	req.collection.remove({_id:req.collection.id(req.params.id)}, function(err, result){
-		if(err) return next(err)
+		if(err) 
+			return next(err)
 
 		res.send((result === 1)?{msg:'success'}:{msg:'error'})
 	})

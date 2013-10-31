@@ -31,7 +31,7 @@ describe('express rest api server', function(){
 				// expect no error
 				expect(err).to.eql(null);
 
-				// expect 1 value, the id
+				// expect 1 value in the body, the id
 				expect(res.body.length).to.eql(1);
 
 				//
