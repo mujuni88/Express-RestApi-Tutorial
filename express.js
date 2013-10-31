@@ -5,9 +5,13 @@ var express = require('express'),
 var app = express()
 app.use(express.bodyParser())
 
-
+console.log("before database");
 // connect to database
 var db = mongoskin.db('localhost:27017/test', {safe:true})
+
+/* test 
+----------*/
+console.log(db.test.find());
 
 // do something everytime there is this value in the url pattern of the request handler
 app.param('collectionName', function(req, res, next, collectionName){
