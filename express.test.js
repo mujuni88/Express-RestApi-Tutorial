@@ -12,7 +12,7 @@ var superagent = require('superagent'),
 
 describe('express rest api server', function(){
 	var id,
-		baseUrl = "http://localhost:80",
+		baseUrl = "http://localhost:3000",
 		john = {
 			name: "John",
 			email: "john@test.com"
