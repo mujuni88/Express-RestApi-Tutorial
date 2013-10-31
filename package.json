@@ -1,0 +1,17 @@
+{
+    "name":"express-restapi",
+    "author":"Joe Buza",
+    "description":"Express RestApi",
+    "version": "0.0.1",
+    "private": true,
+    "keywords":["angular", "mocha", "mongodb", "express"],
+    "license":"BSD",
+    "dependencies": {
+            "express":"3.4.4",
+            "expect.js":"0.2.0",
+            "mocha":"1.13.0",
+            "mongoskin":"0.6.0",
+            "superagent":"0.15.7"
+    }
+
+}
