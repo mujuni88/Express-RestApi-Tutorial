@@ -7,4 +7,6 @@ notifications:
     recipients:
       - joebm08@gmail.com
 services: mongodb
-script: "./node_modules/mocha/bin/mocha *.test.js"
+script: 
+	- "node express.js"
+	- "./node_modules/mocha/bin/mocha *.test.js"
