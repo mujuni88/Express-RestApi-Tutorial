@@ -26,17 +26,17 @@ describe('express rest api server', function(){
 		superagent.post(baseUrl+'/collections/test')
 			.send(john)
 			.end(function(err, res){
-				console.log(res.body)
+				// console.log(res.body)
 
 				// expect no error
 				expect(err).to.eql(null);
 
-				// expect 1 value in the body, the id
 				expect(res.body.length).to.eql(1);
 
-				//
 				expect(res.body[0]._id.length).to.eql(24);
+
 				id = res.body[0]._id;
+
 				done();
 			})
 
@@ -45,12 +45,12 @@ describe('express rest api server', function(){
 	it('should retrieve an object', function(done){
 		superagent.get(baseUrl+'/collections/test/'+id)
 			.end(function(err, res){
-				console.log(res.body)
+				// console.log(res.body)
 
 				// expect no error
 				expect(err).to.eql(null);
 
-				// expect the body to be an object
+				// expect the returned data is an object/document
 				expect(typeof res.body).to.eql('object')
 
 				// expect the length of the id is 24
@@ -69,9 +69,17 @@ describe('express rest api server', function(){
 		superagent.get(baseUrl+'/collections/test')
 			.end(function(err, res){
 				// console.log(res.body)
+				
+				// expect no error
 				expect(err).to.eql(null)
+
+				// expect the returned array of collections contains more that 0 documents
 				expect(res.body.length).to.be.above(0)
-				expect(res.body.map(function (item){return item._id})).to.contain(id)        
+
+				// expect the returned document to have an id of the previous inserted document
+				expect(res.body.map(function (item){return item._id})).to.contain(id)  
+
+				// test is done      
 				done()
 			})
 
@@ -86,7 +94,7 @@ describe('express rest api server', function(){
 				// expect no error
 				expect(err).to.eql(null);
 
-				// expect the body to be an object
+				// expect the returned data is an object/document
 				expect(typeof res.body).to.eql('object')
 
 				// expect a success on the object
@@ -106,7 +114,7 @@ describe('express rest api server', function(){
 				// expect no error
 				expect(err).to.eql(null);
 
-				// expect the body to be an object
+				// expect the returned data is an object/document
 				expect(typeof res.body).to.eql('object')
 
 				// expect the length of the id is 24
@@ -135,10 +143,10 @@ describe('express rest api server', function(){
 		        // expect no error
 		        expect(err).to.eql(null);
 
-		        // expect the body to be an object
+				// expect the returned data is an object/document
 		        expect(typeof res.body).to.eql('object')
 
-		        // expect a success from response
+		        // expect a success from retuned data
 		        expect(res.body.msg).to.eql('success');
 
 		        // test is done
