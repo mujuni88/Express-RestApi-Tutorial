@@ -8,7 +8,8 @@
 */
 
 var superagent = require('superagent'),
-	expect = require('expect.js')
+	expect = require('expect.js'),
+	expressjs = require('./express.js')
 
 describe('express rest api server', function(){
 	var id,
