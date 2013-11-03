@@ -7,5 +7,5 @@ notifications:
       - joebm08@gmail.com
 services: mongodb
 script: 
-- "node express.js"
+- "node express.js &"
 - "./node_modules/mocha/bin/mocha *.test.js"
