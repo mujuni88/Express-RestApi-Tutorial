@@ -16,7 +16,8 @@
         "superagent":"0.15.7"
     },
     "scripts":{
-        "start":"node express.js"
+        "start":"node express.js",
+        "test":"mocha express.test.js"
     }
 
 }
